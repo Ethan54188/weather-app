@@ -12,4 +12,3 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-https://github.com/Ethan54188/weather-app.git
