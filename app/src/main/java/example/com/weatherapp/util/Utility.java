@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import example.com.weatherapp.db.City;
 import example.com.weatherapp.db.County;
 import example.com.weatherapp.db.Province;
+import example.com.weatherapp.gson.Weather;
 
 
 public class Utility {
@@ -81,5 +82,18 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent,Weather.class);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 }
